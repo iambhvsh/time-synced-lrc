@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Blue - Yung Kai</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --safe-top: env(safe-area-inset-top);
+      --safe-bottom: env(safe-area-inset-bottom);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .lyrics-container {
+      mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    }
+
+    .backdrop-blur {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .progress-bar {
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(255, 255, 255, 0.2);
+      outline: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .progress-bar::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 0;
+      height: 0;
+      box-shadow: -407px 0 0 400px #ffffff;
+    }
+
+    .progress-bar::-moz-range-thumb {
+      width: 0;
+      height: 0;
+      background: transparent;
+      box-shadow: -407px 0 0 400px #ffffff;
+    }
+
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .5;
+      }
+    }
+  </style>
+</head>
+
+<body class="h-full bg-black text-white overflow-hidden">
+  <div class="h-screen flex flex-col">
+    <!-- Header -->
+    <header class="relative z-10 pt-[var(--safe-top)]">
+      <div class="flex items-center justify-between px-4 py-4">
+        <button class="text-2xl text-white/80 hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <div class="text-center ml-[40px]">
+          <h1 class="text-2xl font-bold tracking-tight">Blue</h1>
+          <p class="text-sm text-white/60 font-medium">Yung Kai</p>
+        </div>
+        <button id="editModeBtn" class="text-sm font-medium px-3 py-1 bg-white/20 rounded-full hover:bg-white hover:text-black duration-300">
+          Edit Mode
+        </button>
+      </div>
+    </header>
+
+    <!-- Lyrics Container -->
+    <main class="flex-1 overflow-y-auto lyrics-container px-4" id="lyricsContainer">
+      <div class="max-w-lg mx-auto py-8" id="lyrics"></div>
+    </main>
+
+    <!-- Player Controls -->
+    <footer class="relative z-10 pb-[var(--safe-bottom)]">
+      <div class="backdrop-blur">
+        <div class="max-w-lg mx-auto px-6 py-6 space-y-6">
+          <!-- Progress Bar -->
+          <div class="space-y-2">
+            <input type="range" id="progressBar" class="w-full h-1.5 rounded-full progress-bar" min="0" max="100" value="0">
+            <div class="flex justify-between text-xs text-white/60 font-medium">
+              <span id="currentTime">0:00</span>
+              <span id="duration">0:00</span>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="flex items-center justify-between">
+            <button class="text-2xl text-white/80 hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
+              </svg>
+            </button>
+            <button id="playPauseBtn" class="text-4xl bg-white text-blue-900 rounded-full p-3 hover:bg-white/90 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play">
+                <polygon points="6 3 20 12 6 21 6 3" />
+              </svg>
+            </button>
+            <button class="text-2xl text-white/80 hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <audio id="audioPlayer" src="/blue.m4a"></audio>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let lyrics = [
+        { time: 0, text: "♪ Intro", isSection: true },
+        { time: 19, text: "Your morning eyes, I could stare like watching stars" },
+        { time: 25, text: "I could walk you by, and I'll tell without a thought" },
+        { time: 32, text: "You'd be mine, would you mind if I took your hand tonight?" },
+        { time: 40, text: "Know you're all that I want this life" },
+        { time: 46, text: "♪ Music ♪", isSection: true },
+        { time: 47, text: "I'll imagine we fell in love" },
+        { time: 50, text: "I'll nap under moonlight skies with you" },
+        { time: 54, text: "I think I'll picture us, you with the waves" },
+        { time: 58, text: "The ocean's colors on your face" },
+        { time: 61, text: "I'll leave my heart with your air" },
+        { time: 66, text: "So let me fly with you" },
+        { time: 69, text: "Will you be forever with me?" },
+        { time: 75, text: "♪ Music ♪", isSection: true },
+        { time: 106, text: "My love will always stay by you" },
+        { time: 112, text: "I'll keep it safe, so don't you worry a thing, I'll tell you I love you more" },
+        { time: 121, text: "It's stuck with you forever, so promise you won't let it go" },
+        { time: 128, text: "I'll trust the universe will always bring me to you" },
+        { time: 136, text: "I'll imagine we fell in love" },
+        { time: 139, text: "I'll nap under moonlight skies with you" },
+        { time: 143, text: "I think I'll picture us, you with the waves" },
+        { time: 146, text: "The ocean's colors on your face" },
+        { time: 150, text: "I'll leave my heart with your air" },
+        { time: 154, text: "So let me fly with you" },
+        { time: 157, text: "Will you be forever with me?" },
+        { time: 165, text: "♪ Credits", isSection: true },
+        { time: 170, text: "Creator - Yung Kai" },
+        { time: 175, text: "Editor - Bhavesh ✌️" }
+            ];
+
+      const lyricsContainer = document.getElementById('lyrics');
+      const audioPlayer = document.getElementById('audioPlayer');
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      const progressBar = document.getElementById('progressBar');
+      const currentTimeEl = document.getElementById('currentTime');
+      const durationEl = document.getElementById('duration');
+      const editModeBtn = document.getElementById('editModeBtn');
+
+      let activeLyricIndex = -1;
+      let isEditMode = false;
+
+      function renderLyrics() {
+        lyricsContainer.innerHTML = '';
+        lyrics.forEach((line, index) => {
+          const p = document.createElement('p');
+          p.textContent = line.text;
+          if (line.isSection) {
+            p.className = 'text-sm font-semibold text-white/60 uppercase tracking-wider mt-6 mb-2';
+          } else {
+            p.className = 'text-lg py-1 transition-all duration-300 ease-in-out';
+          }
+          p.dataset.index = index;
+
+          if (isEditMode) {
+            const timeInput = document.createElement('input');
+            timeInput.type = 'number';
+            timeInput.value = line.time;
+            timeInput.step = 0.1;
+            timeInput.className = 'w-16 bg-white/20 rounded px-2 py-1 text-sm mr-2';
+            timeInput.addEventListener('change', (e) => {
+              lyrics[index].time = parseFloat(e.target.value);
+            });
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex items-center mb-2';
+            wrapper.appendChild(timeInput);
+            wrapper.appendChild(p);
+            lyricsContainer.appendChild(wrapper);
+          } else {
+            lyricsContainer.appendChild(p);
+          }
+        });
+      }
+
+      function updateActiveLyric() {
+        const currentTime = audioPlayer.currentTime;
+        const newActiveIndex = lyrics.findIndex((lyric, i) =>
+          currentTime >= lyric.time && (i === lyrics.length - 1 || currentTime < lyrics[i + 1].time)
+        );
+
+        if (newActiveIndex !== activeLyricIndex) {
+          document.querySelectorAll('#lyrics p').forEach((el, i) => {
+            if (i === newActiveIndex) {
+              el.classList.add('text-white', 'font-semibold', 'scale-105', 'ml-2');
+              el.classList.remove('text-white/60');
+              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+              el.classList.remove('text-white', 'font-semibold', 'scale-105', 'ml-2');
+              el.classList.add('text-white/60');
+            }
+          });
+          activeLyricIndex = newActiveIndex;
+        }
+      }
+
+      function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = Math.floor(seconds % 60);
+        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+      }
+
+      function updateProgressBar() {
+        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressBar.value = progress;
+        currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+      }
+
+      audioPlayer.addEventListener('loadedmetadata', () => {
+        durationEl.textContent = formatTime(audioPlayer.duration);
+      });
+
+      audioPlayer.addEventListener('timeupdate', () => {
+        updateProgressBar();
+        updateActiveLyric();
+      });
+
+      playPauseBtn.addEventListener('click', () => {
+        if (audioPlayer.paused) {
+          audioPlayer.play();
+          playPauseBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pause"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                    `;
+        } else {
+          audioPlayer.pause();
+          playPauseBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                    `;
+        }
+      });
+
+      progressBar.addEventListener('input', () => {
+        const time = (progressBar.value / 100) * audioPlayer.duration;
+        audioPlayer.currentTime = time;
+      });
+
+      editModeBtn.addEventListener('click', () => {
+        isEditMode = !isEditMode;
+        editModeBtn.textContent = isEditMode ? 'Save' : 'Edit Mode';
+        renderLyrics();
+      });
+
+      renderLyrics();
+    });
+  </script>
+</body>
+
+</html>
