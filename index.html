@@ -1,117 +1,132 @@
 <!DOCTYPE html>
+
 <html lang="en" class="h-full">
 
 <head>
+
+  <!-- Metadata -->
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Blue - Yung Kai</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Blue - Yung Kai | Lyricly</title>
+
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Resources -->
+
+  <!-- Styles -->
+
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Scripts -->
+
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <!-- Motion art colors -->
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
     :root {
-      --safe-top: 0;
-      --safe-bottom: 45px;
+      --gradient-color-1: #0a0c1b;
+      --gradient-color-2: #1e3a8a;
+      --gradient-color-3: #3b82f6;
     }
-
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-
-    .backdrop-blur {
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-
-    .progress-bar {
-      -webkit-appearance: none;
-      appearance: none;
-      background: rgba(255, 255, 255, 0.2);
-      outline: none;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .progress-bar::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 0;
-      height: 0;
-      box-shadow: -407px 0 0 400px #ffffff;
-    }
-
-    .progress-bar::-moz-range-thumb {
-      width: 0;
-      height: 0;
-      background: transparent;
-      box-shadow: -407px 0 0 400px #ffffff;
-    }
-
   </style>
+
 </head>
 
-<body class="h-full bg-black text-white overflow-hidden">
-  <div class="h-screen flex flex-col">
+<body class="h-screen moving-gradient text-white overflow-hidden">
+
+  <div class="h-screen flex flex-col relative">
+
     <!-- Header -->
-    <header class="relative z-10 pt-[var(--safe-top)]">
-      <div class="flex items-center justify-between px-4 py-4">
-        <button class="text-2xl text-white/80 hover:text-white transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          </svg>
+
+    <header class="fixed top-0 left-0 right-0 z-10 backdrop-blur bg-black/30">
+
+      <div class="flex items-center justify-between px-4 py-2">
+
+        <button class="text-2xl text-white/80 hover:text-white transition-colors mt-1">
+
+          <ion-icon name="chevron-down-outline"></ion-icon>
+
         </button>
-        <div class="text-center ml-[40px]">
-          <h1 class="text-2xl font-bold tracking-tight">Blue</h1>
-          <p class="text-sm text-white/60 font-medium">Yung Kai</p>
+
+        <div class="text-center">
+
+          <h1 class="text-xl font-bold tracking-tight">Lyricly</h1>
+
         </div>
-        <button id="editModeBtn" class="text-sm font-medium px-3 py-1 bg-white/20 rounded-full hover:bg-white hover:text-black duration-300">
-          Edit Mode
+
+        <button id="headerOptionsBtn" class="text-white/80 text-2xl hover:text-white mt-1">
+
+          <ion-icon name="ellipsis-horizontal"></ion-icon>
+
         </button>
+
       </div>
+
     </header>
 
+    <!-- Header Options Dropdown -->
+    <div id="headerOptionsDropdown" class="hidden absolute right-2 top-12 mt-2 w-48 rounded-md backdrop-blur bg-black/30 focus:outline-none z-20">
+      <div class="py-1 text-white text-sm" role="menuitem">
+        <a href="#" class="block px-4 py-2">Add to Playlist</a>
+        <a href="#" class="block px-4 py-2">View Album</a>
+        <a href="#" class="block px-4 py-2">View Artist</a>
+        <a href="#" class="block px-4 py-2">Share</a>
+      </div>
+    </div>
+
     <!-- Lyrics Container -->
-    <main class="flex-1 overflow-y-auto lyrics-container px-4" id="lyricsContainer">
-      <div class="max-w-lg mx-auto py-8" id="lyrics"></div>
+    <main id="lyricsContainer" class="flex-1 overflow-y-auto px-4 pt-14 pb-56 lg:pt-24">
+      <div id="lyrics" class="max-w-lg mx-auto"></div>
     </main>
 
     <!-- Player Controls -->
-    <footer class="relative z-10 pb-[var(--safe-bottom)]">
-      <div class="backdrop-blur">
-        <div class="max-w-lg mx-auto px-6 py-6 space-y-6">
-          <!-- Progress Bar -->
-          <div class="space-y-2">
-            <input type="range" id="progressBar" class="w-full h-1.5 rounded-full progress-bar" min="0" max="100" value="0">
-            <div class="flex justify-between text-xs text-white/60 font-medium">
-              <span id="currentTime">0:00</span>
-              <span id="duration">0:00</span>
-            </div>
+    <footer class="fixed bottom-0 left-0 right-0 z-10 backdrop-blur bg-black/30">
+      <div class="max-w-lg mx-auto px-6 py-4 space-y-3">
+        <!-- Song Info -->
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-semibold">Blue</h2>
+            <p class="text-sm text-white/60">Yung Kai</p>
           </div>
+          <button id="favoriteBtn" class="text-white/80 hover:text-white transition-colors heart-icon">
+            <ion-icon name="heart-outline"></ion-icon>
+          </button>
+        </div>
 
-          <!-- Controls -->
-          <div class="flex items-center justify-between">
-            <button class="text-2xl text-white/80 hover:text-white transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
-              </svg>
-            </button>
-            <button id="playPauseBtn" class="text-4xl bg-white text-blue-900 rounded-full p-3 hover:bg-white/90 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play">
-                <polygon points="6 3 20 12 6 21 6 3" />
-              </svg>
-            </button>
-            <button class="text-2xl text-white/80 hover:text-white transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z" />
-              </svg>
-            </button>
+        <!-- Progress Bar -->
+        <div class="space-y-1">
+          <input type="range" id="progressBar" class="w-full h-1 rounded-full progress-bar" min="0" max="100" value="0">
+          <div class="flex justify-between text-xs text-white/60 font-medium">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
           </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center justify-between">
+          <button id="previousBtn" class="text-3xl text-white/80 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+            <ion-icon name="play-skip-back"></ion-icon>
+          </button>
+          <button id="playPauseBtn" class="play-pause-btn">
+            <ion-icon name="play"></ion-icon>
+          </button>
+          <button id="nextBtn" class="text-3xl text-white/80 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+            <ion-icon name="play-skip-forward"></ion-icon>
+          </button>
         </div>
       </div>
     </footer>
   </div>
 
-  <audio id="audioPlayer" src="/blue.m4a"></audio>
+  <audio id="audioPlayer" src="/blue.m4a" preload="metadata"></audio>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -144,49 +159,46 @@
         { time: 165, text: "♪ Credits", isSection: true },
         { time: 170, text: "Creator - Yung Kai" },
         { time: 175, text: "Editor - Bhavesh ✌️" }
-            ];
+      ];
 
-      const lyricsContainer = document.getElementById('lyrics');
+      const lyricsContainer = document.getElementById('lyricsContainer');
+      const lyricsElement = document.getElementById('lyrics');
       const audioPlayer = document.getElementById('audioPlayer');
       const playPauseBtn = document.getElementById('playPauseBtn');
       const progressBar = document.getElementById('progressBar');
       const currentTimeEl = document.getElementById('currentTime');
       const durationEl = document.getElementById('duration');
-      const editModeBtn = document.getElementById('editModeBtn');
+      const favoriteBtn = document.getElementById('favoriteBtn');
+      const previousBtn = document.getElementById('previousBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const headerOptionsBtn = document.getElementById('headerOptionsBtn');
+      const headerOptionsDropdown = document.getElementById('headerOptionsDropdown');
 
       let activeLyricIndex = -1;
-      let isEditMode = false;
+      let isFavorite = false;
 
       function renderLyrics() {
-        lyricsContainer.innerHTML = '';
+        lyricsElement.innerHTML = '';
         lyrics.forEach((line, index) => {
           const p = document.createElement('p');
           p.textContent = line.text;
           if (line.isSection) {
             p.className = 'text-sm font-semibold text-white/60 uppercase tracking-wider mt-6 mb-2';
           } else {
-            p.className = 'text-lg py-1 transition-all duration-300 ease-in-out';
+            p.className = 'text-lg py-1 transition-all duration-300 ease-in-out cursor-pointer inactive-lyric';
           }
           p.dataset.index = index;
 
-          if (isEditMode) {
-            const timeInput = document.createElement('input');
-            timeInput.type = 'number';
-            timeInput.value = line.time;
-            timeInput.step = 0.1;
-            timeInput.className = 'w-16 bg-white/20 rounded px-2 py-1 text-sm mr-2';
-            timeInput.addEventListener('change', (e) => {
-              lyrics[index].time = parseFloat(e.target.value);
-            });
+          p.addEventListener('click', () => {
+            if (!line.isSection) {
+              audioPlayer.currentTime = line.time;
+              audioPlayer.play();
+              updatePlayPauseButton();
+              updateActiveLyric();
+            }
+          });
 
-            const wrapper = document.createElement('div');
-            wrapper.className = 'flex items-center mb-2';
-            wrapper.appendChild(timeInput);
-            wrapper.appendChild(p);
-            lyricsContainer.appendChild(wrapper);
-          } else {
-            lyricsContainer.appendChild(p);
-          }
+          lyricsElement.appendChild(p);
         });
       }
 
@@ -197,18 +209,30 @@
         );
 
         if (newActiveIndex !== activeLyricIndex) {
-          document.querySelectorAll('#lyrics p').forEach((el, i) => {
+          const lyricElements = lyricsElement.querySelectorAll('p');
+          lyricElements.forEach((el, i) => {
             if (i === newActiveIndex) {
-              el.classList.add('text-white', 'font-semibold', 'scale-105', 'ml-2');
-              el.classList.remove('text-white/60');
-              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              el.classList.add('active-lyric');
+              el.classList.remove('inactive-lyric');
+              scrollToActiveLyric(el);
             } else {
-              el.classList.remove('text-white', 'font-semibold', 'scale-105', 'ml-2');
-              el.classList.add('text-white/60');
+              el.classList.remove('active-lyric');
+              el.classList.add('inactive-lyric');
             }
           });
           activeLyricIndex = newActiveIndex;
         }
+      }
+
+      function scrollToActiveLyric(element) {
+        const containerHeight = lyricsContainer.clientHeight;
+        const elementTop = element.offsetTop;
+        const elementHeight = element.clientHeight;
+        const scrollPosition = elementTop - (containerHeight / 2) + (elementHeight / 2);
+        lyricsContainer.scrollTo({
+          top: scrollPosition,
+          behavior: 'smooth'
+        });
       }
 
       function formatTime(seconds) {
@@ -223,6 +247,12 @@
         currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
       }
 
+      function updatePlayPauseButton() {
+        playPauseBtn.innerHTML = audioPlayer.paused ?
+          '<ion-icon name="play"></ion-icon>' :
+          '<ion-icon name="pause"></ion-icon>';
+      }
+
       audioPlayer.addEventListener('loadedmetadata', () => {
         durationEl.textContent = formatTime(audioPlayer.duration);
       });
@@ -235,15 +265,10 @@
       playPauseBtn.addEventListener('click', () => {
         if (audioPlayer.paused) {
           audioPlayer.play();
-          playPauseBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pause"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-                    `;
         } else {
           audioPlayer.pause();
-          playPauseBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-                    `;
         }
+        updatePlayPauseButton();
       });
 
       progressBar.addEventListener('input', () => {
@@ -251,13 +276,52 @@
         audioPlayer.currentTime = time;
       });
 
-      editModeBtn.addEventListener('click', () => {
-        isEditMode = !isEditMode;
-        editModeBtn.textContent = isEditMode ? 'Save' : 'Edit Mode';
-        renderLyrics();
+      favoriteBtn.addEventListener('click', () => {
+        isFavorite = !isFavorite;
+        favoriteBtn.innerHTML = isFavorite ?
+          '<ion-icon name="heart"></ion-icon>' :
+          '<ion-icon name="heart-outline"></ion-icon>';
       });
 
+      previousBtn.addEventListener('click', () => {
+        console.log('Previous track');
+      });
+
+      nextBtn.addEventListener('click', () => {
+        console.log('Next track');
+      });
+
+      audioPlayer.addEventListener('ended', () => {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+        updatePlayPauseButton();
+      });
+
+      function toggleDropdown(dropdown) {
+        dropdown.classList.toggle('hidden');
+      }
+
+      function closeDropdowns() {
+        headerOptionsDropdown.classList.add('hidden');
+      }
+
+      headerOptionsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDropdown(headerOptionsDropdown);
+      });
+
+      document.addEventListener('click', closeDropdowns);
+
       renderLyrics();
+      updatePlayPauseButton();
+
+      audioPlayer.addEventListener('loadedmetadata', () => {
+        durationEl.textContent = formatTime(audioPlayer.duration);
+      });
+
+      if (audioPlayer.readyState >= 2) {
+        audioPlayer.dispatchEvent(new Event('loadedmetadata'));
+      }
     });
   </script>
 </body>
