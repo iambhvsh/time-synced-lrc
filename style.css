@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  background: #000000;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.progress-bar {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0;
+  height: 0;
+  box-shadow: -407px 0 0 400px #ffffff;
+}
+
+.progress-bar::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  background: transparent;
+  box-shadow: -407px 0 0 400px #ffffff;
+}
+
+.lyrics-gradient {
+  background: linear-gradient(180deg, rgba(10, 12, 27, 0) 0%, rgba(10, 12, 27, 0.1) 50%, rgba(10, 12, 27, 0.2) 100%);
+}
+
+.active-lyric {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  transform: scale(1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.inactive-lyric {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.6;
+  transform: scale(1);
+}
+
+.moving-gradient {
+  background: linear-gradient(45deg, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-3));
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.play-pause-btn {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: white;
+  color: var(--gradient-color-2);
+  font-size: 32px;
+  transition: all 0.3s ease;
+}
+
+.play-pause-btn:hover {
+  transform: scale(1.05);
+}
+
+.heart-icon {
+  font-size: 28px;
+}
+
+#lyricsContainer {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  height: calc(150vh - 400px);
+}
