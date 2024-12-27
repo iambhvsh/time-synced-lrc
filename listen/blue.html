@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="en" class="h-full select-none bg-black">
+
+<head>
+
+<!-- Metadata -->
+
+<!-- Primary Meta Tags -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>${songName} - ${authorName} | ${siteName}</title>
+
+<meta name="theme-color" content="#000000" />
+
+<meta name="title" content="${songName} - ${authorName} | ${siteName}" />
+
+<meta name="description" content="Listen to ${songName} by ${authorName} only on ${siteName}" />
+
+<!-- Open Graph / Facebook -->
+
+<meta property="og:type" content="website" />
+
+<meta property="og:url" content="https://tslrc.vercel.app/listen/blue.html" />
+
+<meta property="og:title" content="${songName} - ${authorName} | ${siteName}" />
+
+<meta property="og:description" content="Listen to ${songName} by ${authorName} only on ${siteName}" />
+
+<meta property="og:image" content="/assets/images/blue.png" />
+
+<!-- Twitter -->
+
+<meta property="twitter:card" content="summary_large_image" />
+
+<meta property="twitter:url" content="https://tslrc.vercel.app/listen/blue.html" />
+
+<meta property="twitter:title" content="${songName} - ${authorName} | ${siteName}" />
+
+<meta property="twitter:description" content="Listen to ${songName} by ${authorName} only on ${siteName}" />
+
+<meta property="twitter:image" content="/assets/images/blue.png" />
+
+<!-- Sources -->
+
+<link rel="stylesheet" href="/assets/styles/style.css">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script src="/assets/scripts/script.js"></script>
+
+<!-- Constants -->
+
+<script>
+const songName = "Blue";
+const songSource= "/assets/songs/die-with-a-smile.m4a";
+const authorName = "Yung Kai";
+const gradientColors = ["gold", "#151B54", "#007AFF"];
+const previousSong = "";
+const nextSong = "/listen/die-with-a-smile.html";
+const songLyrics = [
+  { time: 0, text: "♪ Music", isSection: true },
+  { time: 18, text: "Your morning eyes, I could stare like watching stars" },
+  { time: 25, text: "I could walk you by, and I'll tell without a thought" },
+  { time: 32, text: "You'd be mine, would you mind if I took your hand tonight?" },
+  { time: 40, text: "Know you're all that I want this life" },
+  { time: 46, text: "♪ Music ♪", isSection: true },
+  { time: 47, text: "I'll imagine we fell in love" },
+  { time: 50, text: "I'll nap under moonlight skies with you" },
+  { time: 54, text: "I think I'll picture us, you with the waves" },
+  { time: 58, text: "The ocean's colors on your face" },
+  { time: 61, text: "I'll leave my heart with your air" },
+  { time: 66, text: "So let me fly with you" },
+  { time: 69, text: "Will you be forever with me?" },
+  { time: 75, text: "♪ Music ♪", isSection: true },
+  { time: 106, text: "My love will always stay by you" },
+  { time: 112, text: "I'll keep it safe, so don't you worry a thing, I'll tell you I love you more" },
+  { time: 121, text: "It's stuck with you forever, so promise you won't let it go" },
+  { time: 128, text: "I'll trust the universe will always bring me to you", lineBreak: true },
+  { time: 136, text: "I'll imagine we fell in love" },
+  { time: 139, text: "I'll nap under moonlight skies with you" },
+  { time: 143, text: "I think I'll picture us, you with the waves" },
+  { time: 146, text: "The ocean's colors on your face" },
+  { time: 150, text: "I'll leave my heart with your air" },
+  { time: 154, text: "So let me fly with you" },
+  { time: 157, text: "Will you be forever with me?", lineBreak: true }
+      ];
+
+</script>
+
+<!-- Audio -->
+
+<audio id="audioPlayer" src="/assets/songs/blue.m4a" preload="metadata"></audio>
+
+</head>
+
+<!-- Body -->
+
+<body class="h-screen moving-gradient text-white overflow-hidden font-sans">
+
+<div class="h-screen flex flex-col relative">
+
+<!-- Header -->
+
+<header class="fixed top-0 left-0 right-0 z-10 backdrop-blur-2xl bg-black/20">
+
+<div class="flex items-center justify-between px-4 py-2">
+
+<div class="text-center">
+
+<a href="/" title="Lyricly - Home">
+
+<h1 class="text-xl font-semibold tracking-tight hover:underline" id="siteNameHeader"></h1>
+
+</a>
+
+</div>
+
+<button id="headerOptionsBtn" class="text-white/80 text-2xl hover:text-white mt-1">
+
+<ion-icon name="chevron-down-outline"></ion-icon>
+
+</button>
+
+</div>
+
+</header>
+
+<!-- Dropdown -->
+
+<div id="headerOptionsDropdown" class="hidden fixed right-2 top-12 mt-3 w-48 rounded-2xl bg-black/20 backdrop-blur-2xl focus:outline-none z-20 overflow-hidden">
+
+<div class="py-1 text-white text-sm divide-y divide-white/10" role="menu">
+
+<a href="https://github.com/iambhvsh" class="block px-4 py-3 hover:bg-white/20 transition-colors">Source Code</a>
+
+<a href="https://music.apple.com/ph/artist/yung-kai/1584349184" class="block px-4 py-3 hover:bg-white/20 transition-colors">View Artist</a>
+
+</div>
+
+</div>
+
+<!-- Main -->
+
+<main id="lyricsContainer" class="flex-1 overflow-y-auto lyrics-scroll px-4 pt-14 pb-52 md:pb-52 lg:pb-36">
+
+<div id="lyrics" class="max-w-lg mx-auto"></div>
+
+</main>
+
+<!-- Footer -->
+
+<footer class="fixed bottom-0 left-0 right-0 z-10 backdrop-blur-2xl bg-black/20">
+
+<div class="max-w-lg mx-auto px-4 py-3 space-y-4 md:space-y-2">
+
+<div class="flex items-center justify-between">
+
+<div>
+
+<h2 id="songNameFooter" class="text-lg font-semibold"></h2>
+
+<p id="authorNameFooter" class="text-sm text-white/60"></p>
+
+</div>
+
+<div class="flex items-center space-x-4">
+
+<button id="previousBtn" class="text-2xl text-white/80 hover:text-white transition-colors">
+
+<ion-icon name="play-skip-back"></ion-icon>
+
+</button>
+
+<button id="playPauseBtn" class="text-4xl text-white">
+
+<ion-icon name="play-circle"></ion-icon>
+
+</button>
+
+<button id="nextBtn" class="text-2xl text-white/80 hover:text-white transition-colors">
+
+<ion-icon name="play-skip-forward"></ion-icon>
+
+</button>
+
+</div>
+
+</div>
+
+<div class="flex items-center space-x-2">
+
+<span id="currentTime" class="text-xs text-white/60">0:00</span>
+
+<div class="flex-1">
+
+<input type="range" id="progressBar" class="w-full h-1 rounded-full progress-bar mb-4" min="0" max="100" value="0">
+
+</div>
+
+<span id="duration" class="text-xs text-white/60">0:00</span>
+
+</div>
+
+</div>
+
+</footer>
+
+</div>
+
+</body>
+
+</html>

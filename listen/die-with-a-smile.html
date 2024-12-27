@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en" class="h-full select-none bg-black">
+
+<head>
+
+<!-- Metadata -->
+
+<!-- Primary Meta Tags -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>${songName} - ${authorName} | ${siteName}</title>
+
+<meta name="theme-color" content="#000000" />
+
+<meta name="title" content="${songName} - ${authorName} | ${siteName}" />
+
+<meta name="description" content="Listen to ${songName} by ${authorName} only on ${siteName}" />
+
+<!-- Open Graph / Facebook -->
+
+<meta property="og:type" content="website" />
+
+<meta property="og:url" content="https://tslrc.vercel.app/listen/die-with-a-smile.html" />
+
+<meta property="og:title" content="${songName} - ${authorName} | ${siteName}" />
+
+<meta property="og:description" content="Listen to ${songName} by ${authorName} only on ${siteName}" />
+
+<meta property="og:image" content="/assets/images/die-with-a-smile.png" />
+
+<!-- Twitter -->
+
+<meta property="twitter:card" content="summary_large_image" />
+
+<meta property="twitter:url" content="https://tslrc.vercel.app/listen/die-with-a-smile.html" />
+
+<meta property="twitter:title" content="${songName} - ${authorName} | ${siteName}" />
+
+<meta property="twitter:description" content="Listen to ${songName} by ${authorName} only on ${siteName}" />
+
+<meta property="twitter:image" content="/assets/images/die-with-a-smile.png" />
+
+<!-- Sources -->
+
+<link rel="stylesheet" href="/assets/styles/style.css">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script src="/assets/scripts/script.js" defer></script>
+
+<!-- Constants -->
+
+<script>
+
+const songName = "Die With A Smile";
+const authorName = "Bruno Mars & Lady Gaga";
+const gradientColors = ["#ff0000", "#1e3a8a", "#3b82f6"];
+const previousSong = "/listen/blue.html";
+const nextSong = "";
+const songLyrics = [
+  { time: 0, text: "♪ Intro", isSection: true },
+  { time: 3, text: "Ooh" },
+  { time: 9, text: "I, I just woke up from a dream", lineBreak: true },
+  { time: 15, text: "Where you and I had to say goodbye" },
+  { time: 20, text: "And I don't know what it all means" },
+  { time: 25, text: "But since I survived, I realized" },
+  { time: 29, text: "Wherever you go, that's where I'll follow", lineBreak: true },
+  { time: 33, text: "Nobody's promised tomorrow" },
+  { time: 38, text: "So I'ma love you every night like it's the last night" },
+  { time: 42, text: "Like it's the last night" },
+  { time: 44, text: "If the world was ending, I'd wanna be next to you", lineBreak: true },
+  { time: 53, text: "If the party was over and our time on Earth was through" },
+  { time: 62, text: "I'd wanna hold you just for a while and die with a smile" },
+  { time: 72, text: "If the world was ending, I'd wanna be next to you" },
+  { time: 80, text: "Ooh", lineBreak: true },
+  { time: 85, text: "Oh, lost, lost in the words that we scream", lineBreak: true },
+  { time: 92, text: "I don't even wanna do this anymore" },
+  { time: 97, text: "Cause you already know what you mean to me" },
+  { time: 100, text: "And our love's the only war worth fighting for", lineBreak: true },
+  { time: 106, text: "Wherever you go, that's where I'll follow" },
+  { time: 111, text: "Nobody's promised tomorrow" },
+  { time: 116, text: "So I'ma love you every night like it's the last night" },
+  { time: 119, text: "Like it's the last night" },
+  { time: 122, text: "If the world was ending, I'd wanna be next to you", lineBreak: true },
+  { time: 130, text: "If the party was over and our time on Earth was through" },
+  { time: 139, text: "I'd wanna hold you just for a while and die with a smile" },
+  { time: 149, text: "If the world was ending, I'd wanna be next to you" },
+  { time: 158, text: "Right next to you", lineBreak: true },
+  { time: 162, text: "Next to you" },
+  { time: 167, text: "Right next to you" },
+  { time: 171, text: "♪ Oh-oh, oh", isSection: true },
+  { time: 190, text: "If the world was ending, I'd wanna be next to you", lineBreak: true },
+  { time: 199, text: "If the party was over and our time on Earth was through" },
+  { time: 208, text: "I'd wanna hold you just for a while and die with a smile" },
+  { time: 217, text: "If the world was ending, I'd wanna be next to you" },
+  { time: 227, text: "If the world was ending, I'd wanna be next to you" },
+  { time: 235, text: "♪ Ooh", lineBreak: true },
+  { time: 239, text: "I'd wanna be next to you", lineBreak: true },
+];
+
+</script>
+
+<!-- Audio -->
+
+<audio id="audioPlayer" src="/assets/songs/die-with-a-smile.m4a" preload="metadata"></audio>
+
+</head>
+
+<!-- Body -->
+
+<body class="h-screen moving-gradient text-white overflow-hidden font-sans">
+
+<div class="h-screen flex flex-col relative">
+
+<!-- Header -->
+
+<header class="fixed top-0 left-0 right-0 z-10 backdrop-blur-md bg-black/30">
+
+<div class="flex items-center justify-between px-4 py-2">
+
+<div class="text-center">
+
+<a href="/" title="Lyricly - Home">
+  
+<h1 class="text-xl font-semibold tracking-tight hover:underline" id="siteNameHeader"></h1>
+
+</a>
+
+</div>
+
+<button id="headerOptionsBtn" class="text-white/80 text-2xl hover:text-white mt-1">
+
+<ion-icon name="chevron-down-outline"></ion-icon>
+
+</button>
+
+</div>
+
+</header>
+
+<!-- Dropdown -->
+
+<div id="headerOptionsDropdown" class="hidden fixed right-2 top-12 mt-3 w-48 rounded-2xl bg-black/20 backdrop-blur-lg focus:outline-none z-20 overflow-hidden">
+
+<div class="py-1 text-white text-sm divide-y divide-white/10" role="menu">
+
+<a href="https://github.com/iambhvsh" class="block px-4 py-3 hover:bg-white/20 transition-colors">Source Code</a>
+
+<a href="https://www.brunomars.com" class="block px-4 py-3 hover:bg-white/20 transition-colors">View Artist</a>
+
+</div>
+
+</div>
+
+<!-- Main -->
+
+<main id="lyricsContainer" class="flex-1 overflow-y-auto lyrics-scroll px-4 pt-14 pb-52 md:pb-52 lg:pb-36">
+
+<div id="lyrics" class="max-w-lg mx-auto"></div>
+
+</main>
+
+<!-- Footer -->
+
+<footer class="fixed bottom-0 left-0 right-0 z-10 backdrop-blur-md bg-black/30">
+
+<div class="max-w-lg mx-auto px-4 py-3 space-y-4 md:space-y-2">
+
+<div class="flex items-center justify-between">
+
+<div>
+
+<h2 id="songNameFooter" class="text-lg font-semibold"></h2>
+
+<p id="authorNameFooter" class="text-sm text-white/60"></p>
+
+</div>
+
+<div class="flex items-center space-x-4">
+
+<button id="previousBtn" class="text-2xl text-white/80 hover:text-white transition-colors">
+
+<ion-icon name="play-skip-back"></ion-icon>
+
+</button>
+
+<button id="playPauseBtn" class="text-4xl text-white">
+
+<ion-icon name="play-circle"></ion-icon>
+
+</button>
+
+<button id="nextBtn" class="text-2xl text-white/80 hover:text-white transition-colors">
+
+<ion-icon name="play-skip-forward"></ion-icon>
+
+</button>
+
+</div>
+
+</div>
+
+<div class="flex items-center space-x-2">
+
+<span id="currentTime" class="text-xs text-white/60">0:00</span>
+
+<div class="flex-1">
+
+<input type="range" id="progressBar" class="w-full h-1 rounded-full progress-bar mb-4" min="0" max="100" value="0">
+
+</div>
+
+<span id="duration" class="text-xs text-white/60">0:00</span>
+
+</div>
+
+</div>
+
+</footer>
+
+</div>
+
+</body>
+
+</html>
